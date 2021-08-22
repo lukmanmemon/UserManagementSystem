@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+
+#add-users-btn {
+  background-color: dodgerblue;
+  color: white;
+  padding: 1%;
+  border-radius: 10px;
+  font-size: 100%;
+}
+
