@@ -12,7 +12,7 @@ db.once('open', () => console.log('Connected to database'));
 app.use(express.json());
 
 const usersRouter = require('./routes/users');
-app.use('/users', usersRouter);
+app.use('/', usersRouter);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log('Server listening on ' + PORT));

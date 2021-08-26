@@ -2,11 +2,42 @@
   text-align: center;
 }
 
-#add-users-btn {
+#add-user-btn {
   background-color: dodgerblue;
   color: white;
   padding: 1%;
   border-radius: 10px;
   font-size: 100%;
 }
+
+#add-user-form {
+  text-align: left;
+  margin: 5%;
+}
+
+input {
+  margin: 15px;
+}
+
+#app-sub-header{
+  text-align: left;
+  margin: 2% 5%;
+}
+
+#users {
+  margin: 1% 5%;
+}
+
+td, th {
+  padding: 10px 50px 10px 0px;
+  text-align: left;
+}
+
+#edit-btn, #delete-btn {
+  margin: 5px 10px;
+}
+
+
+
+
 
