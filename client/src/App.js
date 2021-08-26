@@ -54,16 +54,16 @@ function App() {
         <label for="lname">Last Name</label>
         <input type="text" name="lname" onChange={event => setLastName(event.target.value)}></input><br></br>
         <label for="email">Email</label>
-        <input type="text" name="email" onChange={event => setEmail(event.target.value)}></input><br></br>
+        <input type="text" name="email" id="email-input" onChange={event => setEmail(event.target.value)}></input><br></br>
         <input type="submit" value="New user" id="add-user-btn"></input>
       </form>
-      <h3 id="app-sub-header">Users</h3>
       <table id="users">
         <thead>
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
+            <th>Actions</th>
         </tr>
         </thead>
       { data.map((user) => {
@@ -73,8 +73,10 @@ function App() {
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td>{user.email}</td>
-              <td><button><i className="fa fa-edit" id="edit-btn"></i></button></td>
-              <td><button onClick={() => removeUser(user.id)}><i className="fa fa-trash" id="delete-btn"></i></button></td>
+              <td><button id="edit-btn">Edit</button>
+              <button id="delete-btn" onClick={() => removeUser(user.id)}>Delete</button>
+              </td>
+              
             </tr>
           </tbody>
         )

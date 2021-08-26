@@ -2,42 +2,71 @@
   text-align: center;
 }
 
-#add-user-btn {
-  background-color: dodgerblue;
+#app-header {
+  background-color: #6200EE;
   color: white;
-  padding: 1%;
+  padding-bottom: 1%;
+}
+
+h1 {
+  margin-top: 0px;
+}
+
+#add-user-btn {
+  background-color: #3700B3;
+  color: white;
+  margin-left: 0%;
+  padding: 2%;
   border-radius: 10px;
   font-size: 100%;
 }
 
 #add-user-form {
+  width: fit-content;
+  border: 1px solid gray;
+  padding: 15px;
   text-align: left;
-  margin: 5%;
+  margin: 2% 5%;
 }
 
 input {
   margin: 15px;
 }
 
-#app-sub-header{
-  text-align: left;
-  margin: 2% 5%;
+#email-input {
+  width: 50%;
 }
 
 #users {
   margin: 1% 5%;
 }
 
+#users th {
+  background-color: #6200EE;
+  color: white;
+}
+
+#users td {
+  background-color: lavender;
+}
+
 td, th {
-  padding: 10px 50px 10px 0px;
+  padding: 10px 50px 10px 10px;
   text-align: left;
+}
+
+#edit-btn {
+  background-color: gold;
+}
+
+#delete-btn {
+  background-color: red;
+  color: white;
 }
 
 #edit-btn, #delete-btn {
   margin: 5px 10px;
+  padding: 8px;
+  border-color: beige;
+  border-radius: 10px;
 }
-
-
-
-
-
