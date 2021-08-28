@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import 'font-awesome/css/font-awesome.min.css';
 
 function App() {
   const [data, setData] = React.useState([]);
@@ -17,8 +16,6 @@ function App() {
       .then((res) => res.json())
         .then((data) => setData(data));
   }, []);
-
-  console.log(data);
   
   const removeUser = (id) => {
     fetch("/users/" + id, {
@@ -27,20 +24,21 @@ function App() {
         "accepts": "application/json"
       }
     })
-      .then((res) => res.json())
-        .then((data) => setData(data));     
+    
+    const newList = data.filter((result) => result._id !== id)
+    setData(newList);
   }
 
   const addUser = () => {
     fetch("/users", {
       method: 'POST',
-      body: {firstName: firstName, lastName: lastName, email: email},
+      body: { "firstName": firstName, "lastName": lastName, "email": email },
       headers: {
         "accepts": "application/json"
       }
     })
       .then((res) => res.json())
-        .then((data) => setData(data));   
+        .then((data) => console.log(data));  
   }
 
   return (
@@ -49,11 +47,11 @@ function App() {
         <h1>User Management System</h1>
       </header>
       <form onSubmit={addUser} id="add-user-form">
-        <label for="fname">First Name</label>
+        <label htmlFor="fname">First Name</label>
         <input type="text" name="fname" onChange={event => setFirstName(event.target.value)}></input>
-        <label for="lname">Last Name</label>
+        <label htmlFor="lname">Last Name</label>
         <input type="text" name="lname" onChange={event => setLastName(event.target.value)}></input><br></br>
-        <label for="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input type="text" name="email" id="email-input" onChange={event => setEmail(event.target.value)}></input><br></br>
         <input type="submit" value="New user" id="add-user-btn"></input>
       </form>
@@ -69,12 +67,12 @@ function App() {
       { data.map((user) => {
         return (
           <tbody>
-            <tr key={user.id}>
+            <tr key={user._id}>
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td>{user.email}</td>
               <td><button id="edit-btn">Edit</button>
-              <button id="delete-btn" onClick={() => removeUser(user.id)}>Delete</button>
+              <button id="delete-btn" onClick={() => removeUser(user._id)}>Delete</button>
               </td>
               
             </tr>
