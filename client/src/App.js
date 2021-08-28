@@ -13,8 +13,8 @@ function App() {
         "accepts": "application/json"
       }
     })
-      .then((res) => res.json())
-        .then((data) => setData(data));
+      .then(res => res.json())
+        .then(data => setData(data));
   }, []);
   
   const removeUser = (id) => {
@@ -24,21 +24,21 @@ function App() {
         "accepts": "application/json"
       }
     })
-    
-    const newList = data.filter((result) => result._id !== id)
+
+    const newList = data.filter(user => user._id !== id);
     setData(newList);
   }
 
-  const addUser = () => {
-    fetch("/users", {
+  const addUser = async () => {
+    const requestOptions = {
       method: 'POST',
-      body: { "firstName": firstName, "lastName": lastName, "email": email },
-      headers: {
-        "accepts": "application/json"
-      }
-    })
-      .then((res) => res.json())
-        .then((data) => console.log(data));  
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ firstName: firstName, lastName: lastName, email: email })
+    };
+    const response = await fetch('/users', requestOptions);
+    const data = await response.json();
+    setData(data);
+
   }
 
   return (
