@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+body {
+  background-color: lavender;
+}
+
 #app-header {
   background-color: #6200EE;
   color: white;
@@ -15,26 +19,32 @@ h1 {
 #add-user-btn {
   background-color: #3700B3;
   color: white;
-  margin-left: 0%;
   padding: 2%;
   border-radius: 10px;
   font-size: 100%;
 }
 
 #add-user-form {
-  width: fit-content;
+  width: 30%;
   border: 1px solid gray;
+  background-color: white;
   padding: 15px;
   text-align: left;
   margin: 2% 5%;
 }
 
-input {
+label {
   margin: 15px;
 }
 
 #email-input {
-  width: 50%;
+  width: 55%;
+  margin: 15px;
+}
+
+.name-input {
+  width: 35%;
+  margin: 15px;
 }
 
 #users {
@@ -47,7 +57,7 @@ input {
 }
 
 #users td {
-  background-color: lavender;
+  background-color: white;
 }
 
 td, th {
@@ -64,9 +74,27 @@ td, th {
   color: white;
 }
 
-#edit-btn, #delete-btn {
+#edit-btn, #delete-btn, #save-btn, #cancel-btn, #add-user-btn {
   margin: 5px 10px;
-  padding: 8px;
+  padding: 8px 15px;
   border-color: beige;
-  border-radius: 10px;
+  border-radius: 15px;
+}
+
+#save-btn {
+  background-color: #3700B3;
+  color: white;
+}
+
+.popup-content {
+  background-color: aliceblue;
+  border: 1px solid lightblue;
+  min-width: 30%;
+  width: fit-content;
+  text-align: left;
+  padding: 15px;
+}
+
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
 }

@@ -1,17 +1,47 @@
 import React from 'react';
+import Popup from 'reactjs-popup';
 import './App.css';
+const validator = require('validator');
+
 
 function App() {
   const [data, setData] = React.useState([]);
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [updatedFirstName, setUpdatedFirstName] = React.useState("");
+  const [updatedLastName, setUpdatedLastName] = React.useState("");
+  const [updatedEmail, setUpdatedEmail] = React.useState("");
+  const [userId, setUserId] = React.useState("");
+
+  let userData = { 
+    firstName: firstName, 
+    lastName: lastName, 
+    email: email 
+  };
+
+  let updatedUserData = {
+    firstName: updatedFirstName,
+    lastName: updatedLastName,
+    email: updatedEmail
+  }
+
+  const updateUser = async (id) => {
+
+    const requestOptions = {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedUserData)
+    };
+    const response = await fetch('/users' + id, requestOptions);
+    const data = await response.json();
+    setData(data);
+  }
 
   React.useEffect(() => {
     fetch("/users", {
-      headers: {
-        "accepts": "application/json"
-      }
+      headers: { "accepts": "application/json" }
     })
       .then(res => res.json())
         .then(data => setData(data));
@@ -20,25 +50,38 @@ function App() {
   const removeUser = (id) => {
     fetch("/users/" + id, {
       method: 'DELETE',
-      headers: {
-        "accepts": "application/json"
-      }
-    })
+      headers: { "accepts": "application/json" }
+    });
 
     const newList = data.filter(user => user._id !== id);
     setData(newList);
   }
 
   const addUser = async () => {
+    if (firstName === "" || lastName === "" || email === "") {
+      alert("Please fill in the required fields.")
+    }
+    if (!validator.isEmail(email)) { 
+      alert("Please enter a valid email.")
+    }
+
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ firstName: firstName, lastName: lastName, email: email })
+      body: JSON.stringify(userData)
     };
     const response = await fetch('/users', requestOptions);
     const data = await response.json();
     setData(data);
+  }
 
+  const openPopup = async (id) => {
+    setUserId(id);
+    setIsOpen(!isOpen);
+  }
+
+  const closePopup = () => {
+    setIsOpen(!isOpen);
   }
 
   return (
@@ -47,14 +90,34 @@ function App() {
         <h1>User Management System</h1>
       </header>
       <form onSubmit={addUser} id="add-user-form">
-        <label htmlFor="fname">First Name</label>
-        <input type="text" name="fname" onChange={event => setFirstName(event.target.value)}></input>
-        <label htmlFor="lname">Last Name</label>
-        <input type="text" name="lname" onChange={event => setLastName(event.target.value)}></input><br></br>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="fname">First Name</label><br></br>
+        <input type="text" name="fname" className="name-input" onChange={event => setFirstName(event.target.value)}></input><br></br>
+        <label htmlFor="lname">Last Name</label><br></br>
+        <input type="text" name="lname" className="name-input" onChange={event => setLastName(event.target.value)}></input><br></br>
+        <label htmlFor="email">Email</label><br></br>
         <input type="text" name="email" id="email-input" onChange={event => setEmail(event.target.value)}></input><br></br>
         <input type="submit" value="New user" id="add-user-btn"></input>
       </form>
+      { data.map((user) => {
+        if (user._id === userId) {
+          return (
+            <Popup open={isOpen} closeOnDocumentClick={false}>
+            <div key={user._id}>
+            <form onSubmit={updateUser} >
+                <label htmlFor="fname">First Name</label><br></br>
+                <input type="text" name="fname" defaultValue={user.firstName} className="name-input" onChange={event => setUpdatedFirstName(event.target.value)}></input><br></br>
+                <label htmlFor="lname">Last Name</label><br></br>
+                <input type="text" name="lname" defaultValue={user.lastName} className="name-input" onChange={event => setUpdatedLastName(event.target.value)}></input><br></br>
+                <label htmlFor="email">Email</label><br></br>
+                <input type="text" name="email" defaultValue={user.email} id="email-input" onChange={event => setUpdatedEmail(event.target.value)}></input><br></br>
+                <input type="submit" value="Save" id="save-btn" onClick={() => updateUser(user._id)}></input>
+                <input type="button" value="Cancel" id="cancel-btn" onClick={closePopup}></input>
+            </form>
+            </div>
+            </Popup>
+          );
+        }      
+      })}
       <table id="users">
         <thead>
           <tr>
@@ -68,10 +131,10 @@ function App() {
         return (
           <tbody>
             <tr key={user._id}>
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
-              <td>{user.email}</td>
-              <td><button id="edit-btn">Edit</button>
+              <td className="table-input">{user.firstName}</td>
+              <td className="table-input">{user.lastName}</td>
+              <td className="table-input">{user.email}</td>
+              <td><button id="edit-btn" onClick={() => openPopup(user._id)}>Update</button>
               <button id="delete-btn" onClick={() => removeUser(user._id)}>Delete</button>
               </td>
               
@@ -80,6 +143,7 @@ function App() {
         )
       })}
       </table>
+
     </div>
   );
 }
