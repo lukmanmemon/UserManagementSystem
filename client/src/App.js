@@ -75,9 +75,12 @@ function App() {
     setData(data);
   }
 
-  const openPopup = async (id) => {
-    setUserId(id);
+  const openPopup = async (user) => {
+    setUserId(user._id);
     setIsOpen(!isOpen);
+    setUpdatedFirstName(user.firstName);
+    setUpdatedLastName(user.lastName);
+    setUpdatedEmail(user.email);
   }
 
   const closePopup = () => {
@@ -110,7 +113,7 @@ function App() {
                 <input type="text" name="lname" defaultValue={user.lastName} className="name-input" onChange={event => setUpdatedLastName(event.target.value)}></input><br></br>
                 <label htmlFor="email">Email</label><br></br>
                 <input type="text" name="email" defaultValue={user.email} id="email-input" onChange={event => setUpdatedEmail(event.target.value)}></input><br></br>
-                <input type="submit" value="Save" id="save-btn" onClick={() => updateUser(user._id)}></input>
+                <input type="submit" value="Save" id="save-btn"></input>
                 <input type="button" value="Cancel" id="cancel-btn" onClick={closePopup}></input>
             </form>
             </div>
@@ -134,7 +137,7 @@ function App() {
               <td className="table-input">{user.firstName}</td>
               <td className="table-input">{user.lastName}</td>
               <td className="table-input">{user.email}</td>
-              <td><button id="edit-btn" onClick={() => openPopup(user._id)}>Update</button>
+              <td><button id="edit-btn" onClick={() => openPopup(user)}>Update</button>
               <button id="delete-btn" onClick={() => removeUser(user._id)}>Delete</button>
               </td>
               
