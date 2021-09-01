@@ -28,13 +28,12 @@ function App() {
   }
 
   const updateUser = async (id) => {
-
     const requestOptions = {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedUserData)
     };
-    const response = await fetch('/users' + id, requestOptions);
+    const response = await fetch('/users/' + id, requestOptions);
     const data = await response.json();
     setData(data);
   }
@@ -106,7 +105,7 @@ function App() {
           return (
             <Popup open={isOpen} closeOnDocumentClick={false}>
             <div key={user._id}>
-            <form onSubmit={updateUser} >
+            <form onSubmit={() => updateUser(user._id)} >
                 <label htmlFor="fname">First Name</label><br></br>
                 <input type="text" name="fname" defaultValue={user.firstName} className="name-input" onChange={event => setUpdatedFirstName(event.target.value)}></input><br></br>
                 <label htmlFor="lname">Last Name</label><br></br>
