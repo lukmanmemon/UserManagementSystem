@@ -48,7 +48,7 @@ label {
 }
 
 #users {
-  margin: 1% 5%;
+  margin: 3% 5%;
 }
 
 #users th {
@@ -101,15 +101,19 @@ td, th {
 
 @media only screen and (max-width: 600px) {
   #app-header {
-    font-size: 18px;
-    padding: 15px;
+    font-size: 16px;
+    padding: 10px;
   }
 
   #add-user-form {
+    margin-top: 5%;
     width: 90%;
+    max-width: 540px;
   }
 
   #users {
+    margin-top: 5%;
+    width: 90%;
     max-width: 540px;
   }
 
