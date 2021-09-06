@@ -98,3 +98,17 @@ td, th {
 .popup-overlay {
   background: rgba(0, 0, 0, 0.5);
 }
+
+@media only screen and (max-width: 600px) {
+  #app-header {
+    font-size: 22px;
+  }
+
+  #add-user-form {
+    width: 75%;
+  }
+
+  #users {
+    width: 90%;
+  }
+}
