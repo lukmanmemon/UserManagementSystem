@@ -105,27 +105,16 @@ td, th {
     padding: 10px;
   }
 
-  #add-user-form {
-    margin-top: 5%;
+  #add-user-form, #users {
+    margin: 5% 1%;
     width: 90%;
-    max-width: 540px;
   }
 
-  #users {
-    margin-top: 5%;
-    width: 90%;
-    max-width: 540px;
+  td, th, #edit-btn, #delete-btn {
+    padding: 5px;
   }
 
-  td, th {
-    padding: 10px;
-  }
-
-  .name-input {
-    width: 85%;
-  }
-
-  #email-input {
+  .name-input, #email-input {
     width: 85%;
   }
 }
