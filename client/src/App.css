@@ -103,11 +103,13 @@ td, th {
   #app-header {
     font-size: 16px;
     padding: 10px;
+    min-width: 100%;
   }
 
   #add-user-form, #users {
     margin: 5% 1%;
     width: 90%;
+    min-width: 90%;
   }
 
   td, th, #edit-btn, #delete-btn {
