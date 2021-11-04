@@ -89,11 +89,11 @@ function App() {
   return (
     <div className="App">
       <header id="app-header">
-        <h1>User Management System</h1>
+        <h1 data-testid="header">User Management System</h1>
       </header>
-      <form onSubmit={addUser} id="add-user-form">
+      <form onSubmit={addUser} id="add-user-form" data-testid="form">
         <label htmlFor="fname">First Name</label><br></br>
-        <input type="text" name="fname" className="name-input" onChange={event => setFirstName(event.target.value)}></input><br></br>
+        <input type="text" name="fname" className="name-input"  data-testid="first_name" onChange={event => setFirstName(event.target.value)}></input><br></br>
         <label htmlFor="lname">Last Name</label><br></br>
         <input type="text" name="lname" className="name-input" onChange={event => setLastName(event.target.value)}></input><br></br>
         <label htmlFor="email">Email</label><br></br>

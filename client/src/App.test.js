@@ -1,8 +1,15 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import Adapter from 'enzyme-adapter-react-16';
+import { mount, configure} from 'enzyme';
 import App from './App';
 
-test('renders learn react link', () => {
+configure({ adapter: new Adapter() });
+
+test('renders application', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+});
+
+test('correct title is displayed', () => {
+  render(<App />);
+  expect(screen.getByTestId('header')).toHaveTextContent("User Management System")
 });
