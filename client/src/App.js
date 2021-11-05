@@ -103,7 +103,7 @@ function App() {
       { data.map((user) => {
         if (user._id === userId) {
           return (
-            <Popup open={isOpen} closeOnDocumentClick={false}>
+            <Popup open={isOpen} closeOnDocumentClick={false} data-testid="popup">
             <div key={user._id}>
             <form onSubmit={() => updateUser(user._id)} >
                 <label htmlFor="fname">First Name</label><br></br>
