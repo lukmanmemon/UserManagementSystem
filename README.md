@@ -2,8 +2,6 @@
 
 A user management system that allows users and their information to be stored. New users can be created, current users can be deleted, and their information can be updated.
 
-The app can be viewed at: https://usermanagement-system.herokuapp.com/
-
 ![image](https://user-images.githubusercontent.com/52639954/202929922-c5673aca-46bd-433a-ad50-0d9323f7733c.png)
 
 
